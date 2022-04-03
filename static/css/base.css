@@ -2,7 +2,7 @@
 /* static/css/base.css */
 
 header{
-  color: lavender;
+  color: lavenderblush;
   text-align: center;
 
   border-bottom: 1px solid #999;
@@ -11,7 +11,7 @@ header{
 
 }
 header h1 a {
-   color: lavender;
+   color: lavenderblush;
    position:relative;
    text-align: center;
    text-decoration: none;
@@ -29,8 +29,7 @@ body {
 }
 
 .nav-left {
-    margin-right:
-    auto;
+    margin-right: auto;
 }
 .nav-right {
    display: flex;
