@@ -1,0 +1,50 @@
+
+/* static/css/base.css */
+
+header{
+  color: lavenderblush;
+  text-align: center;
+
+  border-bottom: 1px solid #999;
+  margin-bottom: 2rem;
+  display: flex;
+
+}
+header h1 a {
+   color: lavenderblush;
+   position:relative;
+   text-align: center;
+   text-decoration: none;
+
+   margin-top: 6em;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  background-color: grey;
+  color:white;
+
+}
+
+.nav-left {
+    margin-right: auto;
+}
+.nav-right {
+   display: flex;
+   padding-top: 2rem;
+}
+.post-entry {
+    margin-bottom: 2rem;
+}
+.post-entry h2 {
+    margin: 0.5rem 0;
+}
+.post-entry h2 a, .post-entry h2 a:visited {
+    color: lavender;
+    text-decoration: none; }
+.post-entry p {
+    margin: 0;
+    font-weight: 400;
+}

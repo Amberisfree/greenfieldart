@@ -4,9 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==3.0.1"
+django = "==2.2.7"
 gunicorn = "==19.9.0"
 whitenoise = "==4.1.4"
+django-crispy-forms = "*"
+django-allauth = "==0.42.0"
 
 [dev-packages]
 

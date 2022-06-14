@@ -3,28 +3,49 @@
 <!--other templates will inherite by adding at here  -->
 <html>
   <head>
-    <title>Django blog</title>
+    <title>GreenField</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400" rel="stylesheet">
     <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"
+    crossorigin="anonymous">
+
+    <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap-theme.min.css"
+    crossorigin="anonymous">
+
+    <link rel="stylesheet"
+    href="https://code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css"
+     crossorigin="anonymous">
+
+   
+    
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+    crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"
+    crossorigin="anonymous"></script>
+
+    <script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+  crossorigin="anonymous"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz@6..96&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
   </head>
   <body>
-    <header>
-      <div class="nav-left">
-        <h1><a href="{% url 'home' %}">Django blog</a></h1>
-      </div>
-      <div class="nav-right">
-        <a href="{% url 'post_new' %}">+ New Blog Post</a>
-      </div>
-    </header>
-    {% if user.is_authenticated %}
-      <p>Hi {{ user.username }}!</p>
-      <p><a href="{%url "logout" %}">Log out</a></p>
-    {% else %}
-      <p>You are not logged in.</p>
-      <a href="{% url 'login' %}">Log In</a> {% endif %}
-    <div>
+    {% block navbar %} {% endblock %}
+
+
       {% block content %}
+
       {% endblock content %}
-    </div>
+    
+
+      
   </body>
+<footer>{% block footer %} {% endblock %}</footer>
+
 </html>

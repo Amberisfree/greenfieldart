@@ -1,11 +1,117 @@
 <!-- templates/home.html -->
-{% extends 'base.html' %}
+{% extends 'base_menu.html' %}
+{% load static %}
+
 
 {% block content %}
-  {% for post in object_list %}
-    <div class="post-entry">
-      <h2><a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a></h2>
-      <p>{{ post.body }}</p>
+<div style="font-family: 'Bodoni Moda', sans-serif; width:100%;">
+<div class="container" style="position: relative;width:100%" >
+
+  <img  src="{%static "images/sea.jpg"%}"   width="100%">
+
+<h5 style="position: absolute;
+top: 50;
+width: 100%;
+text-align: center;
+font-size: 3.5em; font-family: 'Bodoni Moda', sans-serif;color: #5D6D7E;"
+>The World is waiting <br>for a Talented Artist</h5> 
+
+
+</div>
+<br><br><br>
+
+<!--Greenfield's Mission Description -->
+
+  <div class="container">
+    <p style="
+      width: 100%;
+      text-align: center;
+      font-size: 2.3em; 
+      font-family: 'Bodoni Moda', sans-serif;
+      color: #5D6D7E;letter-spacing: 1px;">
+      Greenfield's Mission<br><br>
+      <span style="font-size:0.6em;line-height:1.6;"> 
+        We are creating a digital space
+      <br>for green field art lovers to <br>showcase artworks and draw<br>  inspiration from the community. </span></p>
+  </div>
+  <br><br><br>
+
+
+
+<!--card items-->
+
+<div class="container-fluid mt-4 mb-4  row" style="margin-right:auto; margin-left:auto;padding:5%;text-align: center;">
+<p style="
+width: 100%;
+text-align: center;
+font-size: 3em; 
+font-family: 'Bodoni Moda', sans-serif;
+color: #5D6D7E;letter-spacing: 1px;">
+
+  <div class=" card text-center col-md-4 col-sm-6 col-xs-12" style="width: 30%; height: 25rem;border-radius:15px; border:solid #EAEDED 10px; float:center; margin-right:4px; ">
+    <img  src="{%static "images/archive.png"%}"   class="card-img-top rounded"alt="" style="height: 13rem; margin-top:1em;" >
+    <br>
+    <div class="card-body">
+       <a href="{% url 'archive:main' %}" style="background-color:#9CC3C2;
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 4px;
+        font-size: 25px;
+       ">Archive</a>
     </div>
-  {% endfor %}
+  </div>
+
+  <div class=" card text-center col-md-4 col-sm-6 col-xs-12"" style="width: 30%;height: 25rem;border-radius:15px; border:solid #EAEDED 10px; float:center;  margin-right:4px;" >
+    <img  src="{%static "images/workshop.png"%}"   class="card-img-top rounded"alt="" style="height: 13rem; margin-top:1em;">
+    <div class="card-body">
+       <a href="#" style="background-color:#98ABC2;
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 4px;
+        font-size: 25px;
+       ">Workshop</a>
+    </div>
+  </div>
+
+  <div class=" card text-center col-md-4 col-sm-6 col-xs-12"" style="width: 30%;height: 25rem;border-radius:15px; border:solid #EAEDED 10px; float:center;  margin-right:4px;">
+    <img  src="{%static "images/event.png"%}"   class="card-img-top rounded"alt="" style="height: 15rem; margin-top:1em;">
+    <div class="card-body">
+       <a href="#" style="background-color:#BD95C1;
+        border: none;
+        color: white;
+        padding: 5px 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 4px;
+        font-size: 25px;
+       ">Event</a>
+    </div>
+  </div>
+  
+
+  
+ 
+</p>
+</div>
+
+</div>
 {% endblock content %}
+
+
+<!--footer-->
+{% block footer %}
+<div class="container" style="width:100% ;height:30rem; background-color:#EAEDED;margin-top: 5em;">
+
+
+</div>
+
+{% endblock %}

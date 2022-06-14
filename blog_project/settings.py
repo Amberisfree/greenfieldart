@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+from pickle import FALSE
+from telnetlib import AUTHENTICATION
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,9 +40,45 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic', # new!
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
+    "django.contrib.sites",
+
+    #Third Party
+    'crispy_forms',
+    "allauth",
+    "allauth.account",
+
+    #'taggit',
+
     "blog.apps.BlogConfig",
-    "accounts.apps.AccountsConfig"
+    "accounts.apps.AccountsConfig",
+    "menu.apps.MenuConfig",
+    "archive.apps.ArchiveConfig"
 ]
+
+#django-allauth config
+LOGIN_REDIRECT_URL = 'home' #account logout Redirect
+ACCOUNT_LOGOUT_REDIRECT = 'home'
+
+SITE_ID=1
+AUTHENTICATION_BACKENDS=(
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+EMAIL_BACKEND="django.core.mail.backends.console.EmailBackend"
+ACCOUNT_SESSION_REMEMBER= False
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE= False
+
+ACCOUNT_USERNAME_REQUIRED=False
+ACCOUNT_AUTHENTICATION_METHOD="email"
+ACCOUNT_EMAIL_REQUIRED=True
+ACCOUNT_UNIQUE_EMAIL=True
+
+
+
+
+# When we get to tagging
+#TAGGIT_CASE_INSENSITIVE = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -119,13 +157,16 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # new!
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_URL = "static/"
+STATICFILES_DIRS = [
+   os.path.join(BASE_DIR, 'static/')
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"  # new
 
 
 
-LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'home'
+

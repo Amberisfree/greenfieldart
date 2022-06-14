@@ -1,0 +1,50 @@
+{% extends 'base_menu.html' %}
+{% block title %}{{ settings.APP_NAME }}{% endblock %}
+
+{% block content %}
+<div class="container" style="font-family: 'Bodoni Moda';"">
+
+<h2 class="text-center">Archive</h2>
+<hr>
+
+<nav class="navbar  navbar-dark mx-auto"" style="font-size:1.8em;font-family: 'Bodoni Moda', serif;">
+
+  <div class="mx-auto" style="width:80%;margin:auto">
+    <!-- https://stackoverflow.com/questions/22047251/django-dynamically-get-view-url-and-check-if-its-the-current-page -->
+    <ul class="nav navbar-nav" >
+
+      <!-- Assign output of url function to a variable named
+          'xyz' to use in the if statement -->
+      {% url 'archive:oilpainting' as xyz %}
+      <li {% if request.get_full_path == xyz %}class="active"{% endif %}>
+          <a href="{% url 'archive:oilpainting' %}">oil painting</a></li>
+
+      {% url 'archive:bookart' as abc1 %}
+      <li {% if request.get_full_path == abc1 %}class="active"{% endif %}>
+          <a href="{% url 'archive:bookart' %}">book art</a></li>
+
+      {% url 'archive:landscapepainting' as abc2 %}
+      <li {% if request.get_full_path == abc2 %}class="active"{% endif %}>
+          <a href="{% url 'archive:landscapepainting' %}">landscape painting</a></li>
+
+      {% url 'archive:watercolor' as abc3 %}
+      <li {% if request.get_full_path == abc3 %}class="active"{% endif %}>
+          <a href="{% url 'archive:watercolor' %}">Watercolor</a></li>
+
+      {% url 'archive:figuredrawing' as abc4 %}
+      <li {% if request.get_full_path == abc4 %}class="active"{% endif %}>
+          <a href="{% url 'archive:figuredrawing' %}">Figure Drawing</a></li>
+
+
+    </ul>
+
+  </div>
+</nav>
+
+
+</div>
+
+{% block subcontent %}
+{% endblock %}
+
+{% endblock %}

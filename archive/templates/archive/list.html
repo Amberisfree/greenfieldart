@@ -1,0 +1,54 @@
+{% extends 'archive/archive_base.html' %}
+
+{% block subcontent %}
+
+<div class="container" style="font-family: 'Bodoni Moda';">
+<h1 style="text-align:center;">Oil Painting<span style="text-align:end;"><h4>
+
+  {% if user.is_authenticated %}
+  <a href="{% url 'archive:pic_create' %}"> Add an Pic</a>
+  {% endif %}
+</h4></span></h1>
+
+
+
+
+{% if pic_list %}
+
+<div class="container mt-4 mb-4 ml-4 row" style="margin-right:auto; margin-left:auto;padding:10%;">
+
+  {% for pic in pic_list %}
+
+    <div class="card
+      text-center col-lg-3 col-md-4 col-sm-6 col-xs-12 "
+      style="height: 30%;background-color:#f6f0e6; border: solid 10px #f6f0e6; border-radius:15px; border:solid white 10px; float:center;" >
+        <img src= "{% url 'archive:pic_picture' pic.id %}" class="card-img-top rounded"alt="" style="height: 13rem; margin-top:1em;">
+        <div class="card-body">
+          <ul  style="list-style-type: none;margin: 0;padding: 0;"">
+            <li>
+              <p>
+                <a href="{% url 'archive:pic_detail'  pic.id %}">{{ pic.title }}</a>
+                <br>
+                {% if pic.owner == user %}
+                (<a href="{% url 'archive:pic_update' pic.id %}">Edit</a> |
+                <a href="{% url 'archive:pic_delete' pic.id %}">Delete</a>)
+                {% endif %}
+              </p>
+            </li>
+          </ul>
+        </div>
+      <br>
+
+      </div>
+  {% endfor %}
+
+  </div>
+
+{% else %}
+  <p>There are no pics in the database.</p>
+{% endif %}
+</p>
+
+
+{% endblock %}
+</div>

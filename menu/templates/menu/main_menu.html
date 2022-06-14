@@ -1,0 +1,14 @@
+{% extends 'base_menu.html' %}
+{% block title %}{{ settings.APP_NAME }}{% endblock %}
+{% block content %}
+<div class="container">
+
+
+<h2>{{ request.path }}</h2>
+<p>
+I am the content block in templates/menu/main_menu.html
+</p>
+<p>request.path: {{ request.path }}
+  </p>
+</div>
+{% endblock %}
