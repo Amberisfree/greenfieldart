@@ -3,12 +3,56 @@
 {% extends 'base_menu.html' %}
 
 {% block content %}
-
+<div class="container">
   <div class="post-entry">
     <h2>{{ post.title }}</h2>
     <p>{{ post.body }}</p>
   </div>
 
+
+  {% if user.is_authenticated %}
+  <br clear="all"/>
+  <p>
+  {% load crispy_forms_tags %}
+  <form method="post" action="{% url 'blog:post_review_create' post.id %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+  <input type="submit" value="Submit">
+  <input type="submit" value="All Posts" onclick="window.location.href='{% url 'blog:main' %}';return false;">
+  </form>
+  </p>
+  
+    
+
+
+  {% endif %}
+
+
+  <div>
+    <h3>Reviews</h3> <ul>
+    {% for review in post.reviews.all %}
+    <li>{{ review.review }} ({{ review.author }})</li> 
+    
+    {% if user == comment.owner %}
+    <a href="{% url 'blog:post_review_delete' review.id %}"><i class="fa fa-trash"></i></a>
+    {% endif %}
+
+
+    {% endfor %}
+    </ul>
+  </div>
+
+
+
+  
+
+
+
+
+
+
+  
   <a href="{% url 'blog:post_edit' post.pk %}">+ Edit Blog Post</a>
   <p><a href="{% url 'blog:post_delete' post.pk %}">+ Delete Blog Post</a></p>
-{% endblock content %}
+</div>
+  {% endblock content %}
