@@ -1,10 +1,14 @@
-# build_files.sh
+#!/bin/bash
 
-# Install dependencies
-pip install -r requirements.txt
+# The Vercel platform automatically runs 'pip install'
 
-# Run database migrations
-python manage.py migrate --noinput
+echo "BUILD START"
 
-# Collect static files
-python manage.py collectstatic --noinput --clear
+# make migrations & migrate
+python manage.py makemigrations --no-input
+python manage.py migrate --no-input
+
+# collect static files
+python manage.py collectstatic --no-input --clear
+
+echo "BUILD END"
