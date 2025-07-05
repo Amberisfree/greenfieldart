@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/lavamber1996/Documents/作品/GreenField 1.0/.venv"
+VIRTUAL_ENV="/Users/lavamber1996/Documents/作品/GreenField 2.0/.venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

@@ -30,7 +30,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/Users/lavamber1996/Documents/作品/GreenField 1.0/.venv"
+set -gx VIRTUAL_ENV "/Users/lavamber1996/Documents/作品/GreenField 2.0/.venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
