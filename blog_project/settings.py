@@ -25,13 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '-#x%uhqy(uom@f^ym_=(6$4ml!)mv$+&8_@3yi519ri966ac+f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-# ALLOWED_HOSTS = ["*"]
-ALLOWED_HOSTS = [
-    'greenfieldart.vercel.app',
-    '.vercel.app' # Allows any Vercel deployment URL
-]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
