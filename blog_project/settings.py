@@ -11,24 +11,31 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url # <--- ADD THIS LINE at the top
 from pickle import FALSE
 from telnetlib import AUTHENTICATION
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-#x%uhqy(uom@f^ym_=(6$4ml!)mv$+&8_@3yi519ri966ac+f'
+#SECRET_KEY = '-#x%uhqy(uom@f^ym_=(6$4ml!)mv$+&8_@3yi519ri966ac+f'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+# # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
+# ----------------- CHANGE THIS -----------------
+# Control DEBUG mode with an environment variable
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
 
+
+#ALLOWED_HOSTS = ["*"]   
+ALLOWED_HOSTS = [os.environ.get('VERCEL_URL'), '.vercel.app'] 
 
 # Application definition
 
@@ -131,13 +138,21 @@ WSGI_APPLICATION = 'blog_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
+# Replace your SQLite database configuration
+DATABASES = {
+    'default': dj_database_url.config(
+        # Fallback to a local SQLite database for development if DATABASE_URL is not set
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -180,6 +195,61 @@ STATICFILES_DIRS = [
    os.path.join(BASE_DIR, '/static/')
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# greenfield_art/settings.py
+
+import os
+import dj_database_url # <--- ADD THIS LINE at the top
+
+# ... keep existing imports ...
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+
+# ----------------- CHANGE THIS -----------------
+# Replace your hardcoded SECRET_KEY
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+
+# ----------------- CHANGE THIS -----------------
+# Control DEBUG mode with an environment variable
+DEBUG = os.environ.get('DJANGO_DEBUG', 'False') == 'True'
+
+# ----------------- CHANGE THIS -----------------
+# Configure ALLOWED_HOSTS for Vercel
+ALLOWED_HOSTS = [os.environ.get('VERCEL_URL', '.vercel.app')]
+# Add your custom domain here if you have one, e.g., 'www.yourdomain.com'
+
+
+# Application definition
+# ... (no changes needed here) ...
+
+# ----------------- CHANGE THIS -----------------
+# Replace your SQLite database configuration
+DATABASES = {
+    'default': dj_database_url.config(
+        # Fallback to a local SQLite database for development if DATABASE_URL is not set
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600
+    )
+}
+
+# ... (no changes needed for templates, etc.) ...
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/5.0/howto/static-files/
+
+# STATIC_URL = 'static/'
+
+# This is where your static files are currently located, which is correct.
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+# ----------------- ADD THIS -----------------
+# This is where collectstatic will gather all static files for deployment.
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build')
+
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"  # new
 
 
